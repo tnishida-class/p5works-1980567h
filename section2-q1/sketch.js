@@ -12,5 +12,7 @@ for(let i = 0; i<5; i++){
     let x=(s + 6)*10;
     ellipse(50,50,x)
 }
+if(let i =0; )
+
       // BLANK[1]
 }
