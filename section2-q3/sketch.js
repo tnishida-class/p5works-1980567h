@@ -1,6 +1,5 @@
 // ダーツ
 let cx, cy, maxR;
-
 function setup() {
   let green = color(0, 255, 0);
   let red = color(255, 0, 0);
@@ -16,9 +15,13 @@ function setup() {
   maxR = min(width, height);
 
   drawCircle(black, maxR);
-  drawArcs(green, red, maxR * 0.8);
+  drawArcs(green,red,maxR * 0.8);
+  drawArcs(cream,black,maxR*0.75);
+  drawArcs(green,red,maxR*0.5);
+  drawArcs(cream,black,maxR*0.45);
   // BLANK[1] (hint: drawArcs x 3, drawCircle x 1)
-  drawCircle(red, maxR * 0.05);
+  drawCircle(green, maxR * 0.1);
+  drawCircle(red, maxR*0.05);
 }
 
 function drawCircle(c, r){
