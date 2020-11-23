@@ -1,12 +1,63 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
-    <meta charset="UTF-8">
-    <style> body {padding: 0; margin: 0;} canvas { display: block }</style>
-    <script src="../p5.min.js"></script>
-    <script src="sketch.js"></script>
-  </head>
-  <body>
-  </body>
+<head>
+<meta http-equiv="content-type" charset="utf-8">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+</head>
+<body>
+<script language="JavaScript"><!--
+myQA = new Array(
+  "疲れた"    , "fatiGue",
+  "少年"        , "garcon",
+  "店"      , "boutique",
+  "肉"        , "viande",
+  "少女"    , "fille",
+  "星"        , "etoile",
+  "犬"        , "chien",
+  "友達"      , "ami",
+  "車"        , "voiture",
+  "大きい", "grand",
+  "美味しい","bon",
+  "お金","argent"
+);
+myNowCnt  = 0;
+myLastCnt = myQA.length / 2;
+myQAno    = new Array(myLastCnt);
+
+function myQuesInit(){
+   for (i=0; i<myLastCnt; i++) myQAno[i] = i;
+   for (i=0; i<500; i++){
+      my1 = Math.floor( Math.random() * myLastCnt );
+      my2 = Math.floor( Math.random() * myLastCnt );
+      myBackup = myQAno[my1];
+      myQAno[my1] = myQAno[my2];
+      myQAno[my2] = myBackup;
+   }
+}
+
+function myQues(){
+   if ( myNowCnt==0 ) myQuesInit();
+   myA = prompt("\n問題 : "+myQA[myQAno[myNowCnt]*2],"");
+   if ( myA != null ){
+      if ( myA == myQA[myQAno[myNowCnt]*2+1] ){
+         if (myNowCnt==myLastCnt-1){
+            myNowCnt=0;
+            alert("お疲れ様でした");
+         }else{
+            myNowCnt++;
+            myQues();
+         }
+      }else{
+         alert("答えは "+myQA[myQAno[myNowCnt]*2+1]+" です");
+         myQues();
+      }
+   }else{                                                 // キャンセルボタン押した
+      myNowCnt=0;
+      alert("お疲れ様でした");
+   }
+}
+// --></script>
+<form name="myForm">
+<input type="button" value="クリックすると始まります" onclick="myQues()">
+</form>
+</body>
 </html>
