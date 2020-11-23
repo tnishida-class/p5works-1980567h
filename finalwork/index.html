@@ -5,8 +5,9 @@
 </head>
 <body>
 <script language="JavaScript"><!--
+
 myQA = new Array(
-  "疲れた"    , "fatiGue",
+  "疲れた"    , "fatigue",
   "少年"        , "garcon",
   "店"      , "boutique",
   "肉"        , "viande",
@@ -15,49 +16,52 @@ myQA = new Array(
   "犬"        , "chien",
   "友達"      , "ami",
   "車"        , "voiture",
-  "大きい", "grand",
-  "美味しい","bon",
-  "お金","argent"
+  "大きい" ,  "grand",
+  "美味しい" , "bon",
+  "お金" , "argent"
 );
-myNowCnt  = 0;
-myLastCnt = myQA.length / 2;
-myQAno    = new Array(myLastCnt);
+let NowCount  = 0;
+let LastCount = myQA.length/3;
+QAnumber    = new Array(LastCount);
 
-function myQuesInit(){
-   for (i=0; i<myLastCnt; i++) myQAno[i] = i;
-   for (i=0; i<500; i++){
-      my1 = Math.floor( Math.random() * myLastCnt );
-      my2 = Math.floor( Math.random() * myLastCnt );
-      myBackup = myQAno[my1];
-      myQAno[my1] = myQAno[my2];
-      myQAno[my2] = myBackup;
+function question(){
+   for (i=0; i<LastCount; i++) QAnumber[i] = i;
+   for (i=0; i<300; i++){
+      my1 = Math.floor( Math.random() * LastCount );
+      my2 = Math.floor( Math.random() * LastCount );
+      myBackup = QAnumber[my1];
+      QAnumber[my1] = QAnumber[my2];
+      QAnumber[my2] = myBackup;
    }
 }
 
-function myQues(){
-   if ( myNowCnt==0 ) myQuesInit();
-   myA = prompt("\n問題 : "+myQA[myQAno[myNowCnt]*2],"");
+function myQuestion(){
+   if ( NowCount==0 ) question();
+   myA = prompt("\n問題 : "+myQA[QAnumber[NowCount]*2],"");
    if ( myA != null ){
-      if ( myA == myQA[myQAno[myNowCnt]*2+1] ){
-         if (myNowCnt==myLastCnt-1){
-            myNowCnt=0;
+      if ( myA == myQA[QAnumber[NowCount]*2+1] ){
+         if (NowCount==LastCount-1){
+            NowCount=0;
             alert("お疲れ様でした");
          }else{
-            myNowCnt++;
-            myQues();
+            NowCount++;
+            myQuestion();
          }
       }else{
-         alert("答えは "+myQA[myQAno[myNowCnt]*2+1]+" です");
-         myQues();
+         alert("答えは "+myQA[QAnumber[NowCount]*2+1]+" です");
+         myQuestion();
       }
-   }else{                                                 // キャンセルボタン押した
-      myNowCnt=0;
+   }else{
+      NowCount=0;
       alert("お疲れ様でした");
    }
 }
+
 // --></script>
 <form name="myForm">
-<input type="button" value="クリックすると始まります" onclick="myQues()">
+<input type="button" value="クリックすると始まります" onclick="myQuestion()">
 </form>
+</body>
+</html>
 </body>
 </html>
